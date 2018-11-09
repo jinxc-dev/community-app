@@ -1,0 +1,8 @@
+
+<view class="banner-container">
+    <image src="{{info.image}}" class="banner-image" />
+    <view class="banner-context">
+        <view class="description">{{info.description}}ABDJFLDJlsjfLJDFJLDJFLJsdfasfasgasf</view>
+        <view class="date">{{info.date}}10-17 18:24</view>
+    </view>
+</view>

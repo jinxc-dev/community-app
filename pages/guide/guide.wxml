@@ -1,0 +1,24 @@
+<!--index.wxml-->
+<view class='topBar' >
+    <navigator url="/pages/search/search" class='search'>
+        <icon type="search" size="16" class="search-icon"/>找地址, 找电话
+    </navigator>
+    <view class="owner-info">
+        <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg" class="avatar"/>
+        <view class="detail">
+            <view class="name">
+                <view> 邻晓晓</view>
+                <view class="tags">DIKUO</view>
+            </view>
+            <view class="info">
+                点击复制微信号 <text class="item">kudoshizuku</text>, 联系我。关于皇庭世纪小区的一切，我都懂! 
+            </view>
+            
+        </view>
+    </view>
+</view>
+<view class="main-page">
+
+
+</view>
+

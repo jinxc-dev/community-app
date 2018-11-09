@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "小区指南",
+  "usingComponents": {
+    "guide-item": "/components/guide-item/guide-item"
+  }
+}

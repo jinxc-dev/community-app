@@ -1,0 +1,6 @@
+
+<view class="tags_container">
+    <view wx:for="{{tags}}" wx:key="*this" class="tag-item">
+        {{item}}
+    </view>
+</view>

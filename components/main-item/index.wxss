@@ -1,0 +1,49 @@
+
+.container {
+    width: 200rpx;
+}
+
+
+image {
+    width: 200rpx;
+    height: 200rpx;
+}
+
+.round {
+    border-radius: 50%;
+    border: 2px solid #f7f7f7;
+}
+
+.main-title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 30rpx;
+    color: #333;
+    text-align: center;
+    padding: 15rpx 0rpx;
+}
+
+.sub-title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 26rpx;
+    color: #999;
+    text-align: center;
+}
+
+.sm.container {
+    width: 120rpx;
+}
+.sm image {
+    width: 120rpx;
+    height: 120rpx;
+}
+
+.sm .main-title {
+    font-size: 25rpx;
+    padding: 10rpx 0rpx;
+}
+
+.sm .sub-title {
+    font-size: 20rpx;
+}

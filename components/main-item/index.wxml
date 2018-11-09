@@ -1,0 +1,11 @@
+<!--components/shop/shop.wxml-->
+<view class="container {{sizeStyle}}">
+    <image src="{{avatar}}" class="avatar {{roundStyle}}" />
+    <view  class="main-title">
+        {{title}}
+    </view>
+    <view wx:if="{{isSubTitle}}"  class="sub-title">
+        {{subTitle}}
+    </view>
+    <tags wx:if="{{isTags}}" tags="{{tags}}"></tags>
+</view>
