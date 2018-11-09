@@ -19,6 +19,26 @@
 </view>
 <view class="main-page">
 
+    <view wx:for="{{menuInfo}}" wx:key="*this">
+        <view class="weui-cell">
+            <view class="weui-cell__hd" >
+                <image src="{{item.icon}}" class="item-header__icon"/>
+            </view>
+            <view class="weui-cell__bd">
+                <view class="item-header__title">{{item.title}}</view>
+            </view>
+        </view>
 
+        <view class="item-body">
+            <view class="weui-flex item-body__row" wx:for="{{item.items}}" wx:key="*this">
+                <navigator url="/pages/detail/detail" class="weui-flex__item row-first">
+                    {{item.first.name}}
+                </navigator>
+                <navigator url="/pages/detail/detail" class="weui-flex__item row-second">
+                    {{item.second.name}}
+                </navigator>
+            </view>
+        </view>
+    </view>
 </view>
 

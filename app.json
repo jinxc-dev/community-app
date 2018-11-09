@@ -1,7 +1,9 @@
 {
   "pages": [
-    "pages/guide/guide",
     "pages/index/index",
+    "pages/detail/detail",
+    "pages/map/map",
+    "pages/guide/guide",
     "pages/login/login",
     "pages/mine/mine",
     "pages/search/search",

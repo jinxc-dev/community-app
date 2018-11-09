@@ -1,0 +1,44 @@
+<!--index.wxml-->
+<view class="main-page">
+    <view class="weui-cell header">
+        <view class="weui-cell__hd" >
+            <image src="/images/category/1.png" class="item-header__icon"/>
+        </view>
+        <view class="weui-cell__bd">
+            <view class="item-header__title">AAAAA</view>
+            <view class="item-header__description">AAAAA</view>
+        </view>
+    </view>
+
+    <view class="list-body"> 
+        <view class="menu-list">
+            <view class="menu-list__detail">
+                <view class="name">
+                    <view> 邻晓晓</view>
+                    <view class="tags">DIKUO</view>
+                </view>
+                <view class="address">
+                    点击复制微信号。关于皇庭世纪小区的一切，我都懂! 
+                </view>            
+            </view>
+        </view>
+        <view class="info">
+            <navigator url="/pages/map/map" class="detail-info trangle">
+                <image src="/images/map-mark.png" class="detail-info__icon" />
+                <view class="detail-info__text">Address</view>
+            </navigator>
+            <view class="detail-info trangle" bindtap="onPhoneTap">
+                <image src="/images/phone-call.png" class="detail-info__icon" />
+                <view class="detail-info__text">0123456789</view>
+            </view>
+            <view class="detail-info">
+                <image src="/images/profile.png" class="detail-info__icon" />
+                <view class="detail-info__text">KLG</view>
+            </view>
+        </view>
+    </view>
+
+
+
+</view>
+
