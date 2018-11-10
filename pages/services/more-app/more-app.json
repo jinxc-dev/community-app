@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "小区好货",
+  "usingComponents": {
+    "header-item":"/components/header-item/header-item"
+  }
+}

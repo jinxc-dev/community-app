@@ -1,0 +1,13 @@
+
+<view class="container">
+    <image src="{{info.image}}" class="item-image"/>
+    <view class="item-context">
+        <view class="header">
+            <view class="title">{{info.title}}</view>
+            <tags class="tags" tags="{{info.tags}}"/>
+        </view>
+        <view class="footer">
+           {{info.date}}
+        </view>
+    </view>
+</view>

@@ -1,0 +1,41 @@
+.page {
+    color: #333;
+}
+.sub-text{
+    font-size: 20rpx;
+    color: #aaa;
+}
+
+.__description {
+    font-size: 30rpx;
+}
+
+.space {
+    padding-bottom: 50rpx;
+}
+
+.qr-container {
+    position:relative;
+    display:-webkit-box;
+    display:-webkit-flex;
+    -webkit-box-align:center;
+    -webkit-align-items:center;
+    align-items:center;
+}
+
+.qr-code {
+    align-items: center;
+    display: inline-block;
+}
+
+.qr-code .text {
+    font-size: 28rpx;
+    padding: 20rpx 0;
+    text-align: center;
+    width: 200rpx;
+}
+.qr-footer {
+    background-color: #da3925;
+    height: 130rpx;
+    margin-top: -80rpx;
+}

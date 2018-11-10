@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "松鼠邻家",
+  "navigationBarTextStyle": "light",
+  "navigationBarBackgroundColor": "#da3925",
   "usingComponents": {
     "main-item": "/components/main-item/index",
     "banner-item": "/components/banner-item/banner-item"

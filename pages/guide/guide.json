@@ -1,4 +1,6 @@
 {
-  "navigationBarTitleText": "小区指南"
+  "navigationBarTitleText": "小区指南",
+  "navigationBarTextStyle": "light",
+  "navigationBarBackgroundColor": "#da3925"
 
 }

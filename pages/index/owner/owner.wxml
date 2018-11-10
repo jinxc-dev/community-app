@@ -1,0 +1,59 @@
+<view class="page">
+    <view class="border-panel" >
+        <view style="display:flex">
+        <image class="header__avatar" src="/images/default-image.png" style="margin:auto;"/>
+        </view>
+        <view class="header__context" style="text-align: center">
+            <view class="__title">Name</view>
+            <view class="header__description">AAAA</view>
+            <view class="header__date">date</view>
+
+        </view>
+    </view>
+
+    <view class="border-panel">
+        <view class="__title space">达人介绍 </view>
+        <view class="__description long-text">喜欢徒步、旅游，购物，运动，欢迎交流！</view>
+    </view>
+
+    <view class="border-panel">
+        <view class="__title space">达人联系</view>
+        <view class="space">
+            <view class="weui-flex">
+                <view class="weui-flex__item">
+                    <view class="info-container">
+                        <view class="info-container__rect">
+                            <image src="/images/icons/phone-call.png" class="rect__icon" mode="aspectFit"/>
+                            <view class="rect__text">ADDFDDFF</view>
+                        </view>
+                        <view class="info-container__text">
+                            点击拨打电话联系达人
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-flex__item">
+                    <view class="info-container">
+                        <view class="info-container__rect">
+                            <image src="/images/icons/wechat-logo.png" class="rect__icon" mode="aspectFit"/>
+                            <view class="rect__text">ADDFDDFF</view>
+                        </view>
+                        <view class="info-container__text">
+                            点击复制微信号添加微信好友
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-flex__item">
+                    <view class="info-container">
+                        <view class="info-container__rect">
+                            <image src="/images/tgold-weixin.jpg" class="rect__weixin"/>
+                        </view>
+                        <view class="info-container__text">
+                            保存二维码图片扫码加微信好友
+
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

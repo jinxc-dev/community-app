@@ -1,0 +1,21 @@
+.border-panel {
+  padding: 50rpx 30rpx;
+  border-bottom: 10rpx solid #f0eff4;
+}
+
+.long-text {
+  word-break: break-all;
+}
+
+.img__qr-code {
+  height: 200rpx;
+  width: 200rpx;
+  border: 1px solid #da3925;
+}
+
+.img__weixin-code {
+  height: 200rpx;
+  width: 200rpx;
+  border-radius: 500%;
+  border: 1px solid #da3925;
+}

@@ -1,0 +1,31 @@
+<view class="page">
+    <view class="border-panel">
+        <header-item info="{{info}}"/>
+    </view>
+
+    <view class="border-panel">
+        <view class="__title space">详情介绍</view>
+        <view class="__description long-text">Description</view>
+    </view>
+
+    <view class="border-panel">
+        <view class="__title space">二维码 <text class="sub-text">（保存二维码图片后扫码入群）</text> </view>
+        <view class="space">
+            <view class="qr-container">
+                <view class="qr-code">
+                    <view class="text" style="width: 200rpx;">群主微信二维码</view>
+                    <image class="img__qr-code" src="/images/tgold-weixin.jpg"/>
+                </view>
+                <view class="qr-code">
+                    <view class="text">微信群二维码</view>
+                    <image class="img__qr-code" src="/images/tgold-weixin.jpg"/>
+                </view>
+            </view>
+            <view class="qr-footer"></view>
+        </view>
+        <view class="__description" style="font-size: 25rpx;">
+            <view>提示 : 群二维码失效后，添加群主微信，群主会拉您进群</view>
+            <view style="padding-left: 70rpx; padding-top: 20rpx;">(添加时注明群名)</view>
+        </view>
+    </view>
+</view>

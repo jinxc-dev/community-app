@@ -1,0 +1,43 @@
+.container {
+    position:relative;
+    display:-webkit-box;
+    display:-webkit-flex;
+    display:flex;
+    -webkit-box-align:center;
+    -webkit-align-items:center;
+    align-items:center;
+}
+
+.item-image {
+    width:200rpx;
+    height:200rpx;
+    margin-right:30rpx
+}
+
+.item-context {
+    -webkit-box-flex:1;
+    -webkit-flex:1;
+    flex:1;
+    font-size:30rpx;
+}
+
+.item-context .header {
+    height: 170rpx;
+    font-size: 40rpx;
+}
+
+.item-context .footer {
+    height: 30rpx;
+    font-size: 25rpx;
+    color: #aaa;
+}
+
+.tags {
+    padding: 30rpx 0;
+}
+
+.title {
+    line-height: 0.8;
+    padding-bottom: 20rpx;
+    word-wrap: break-word;
+}
