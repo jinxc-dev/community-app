@@ -1,9 +1,10 @@
 {
-  "pages": [
+  "pages": [    
+    "pages/index/index",
+    "pages/index/banner/banner",
     "pages/index/owner/owner",
     "pages/services/more-app/more-app",
     "pages/services/hao-app/hao-app",
-    "pages/index/index",
     "pages/services/group/group",
     "pages/detail/detail",
     "pages/map/map",
@@ -18,7 +19,7 @@
     "backgroundColor": "#fff",    
     "navigationBarTitleText": "真的好饿啊",
     "navigationBarTextStyle": "black",
-    "navigationBarBackgroundColor": "light"
+    "navigationBarBackgroundColor": "#fff"
 
   },
   "tabBar": {

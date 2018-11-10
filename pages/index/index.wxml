@@ -5,7 +5,7 @@
 <view class="main-page">
     <view class="banner">
         <swiper indicator-dots="true" autoplay="true" interval="5000" duration="500" style="height:300rpx" >
-            <navigator url="/pages/index/templates/category/category?id=1" wx:for="{{banner}}" wx:key="*this">
+            <navigator url="/pages/index/banner/banner?id=1" wx:for="{{banner}}" wx:key="*this">
                 <swiper-item>
                     <image src="{{item.image}}" class="slide-image"/>
                 </swiper-item>
@@ -17,18 +17,18 @@
     <view class="divider"></view>
     <view class="community-items">
         <view class="weui-grids">
-            <view class="weui-grid" style="padding-bottom: 10px">
-                <view class="main-item">
+            <view class="weui-grid" style="padding-bottom: 10px" >
+                <navigator url="/pages/guide/guide" open-type="switchTab"  class="main-item">
                     <view class="">小区指南</view>
-                </view>
+                </navigator >
             </view>
             <view class="weui-grid" style="width: 66.66%">
                 <view class="weui-grids">
                     <block wx:for="{{communityItems}}" wx:key="*this">
-                        <view url="" class="weui-grid space" style="width: 50%">
-                            <view style="background-color: red">
+                        <view class="weui-grid space" style="width: 50%">
+                            <navigator url="/pages/detail/detail" style="display:block">
                                 <view class="sub-item">{{item.name}}</view>
-                            </view>
+                            </navigator>
                         </view>
                     </block>
                 </view>
@@ -43,7 +43,9 @@
             <view class="sub-title">业主自建的互动群</view>
         </view>
         <scroll-view class="item-container" scroll-x style="white-space: nowrap;">
-            <main-item class="large-item" wx:for="{{weixinGroup}}" wx:key="*this" avatar="{{item.avatar}}" title="{{item.title}}" tags="{{item.tags}}"/>
+            <navigator url="/pages/services/group/group" wx:for="{{weixinGroup}}" wx:key="*this" style="display: inline-block;">
+                <main-item class="large-item"  avatar="{{item.avatar}}" title="{{item.title}}" tags="{{item.tags}}"/>
+            </navigator>
         </scroll-view>
     </view>
     <view class="divider"></view>
@@ -53,7 +55,9 @@
             <view class="sub-title">小区里的牛人</view>
         </view>
         <scroll-view class="item-container" scroll-x style="white-space: nowrap;">
-            <main-item class="large-item" wx:for="{{ownerList}}" wx:key="*this" avatar="{{item.avatar}}" title="{{item.title}}" subTitle="{{item.subTitle}}" isRound/>
+            <navigator url="./owner/owner" wx:for="{{ownerList}}" wx:key="*this" style="display: inline-block;">
+                <main-item class="large-item" avatar="{{item.avatar}}" title="{{item.title}}" subTitle="{{item.subTitle}}" isRound/>
+            </navigator>
         </scroll-view>
     </view>
 
@@ -63,7 +67,9 @@
             <view class="sub-title">这里的都是好东西</view>
         </view>
         <scroll-view class="item-container" scroll-x style="white-space: nowrap;">
-            <main-item class="large-item" wx:for="{{appList}}" wx:key="*this" avatar="{{item.avatar}}" title="{{item.title}}" isRound/>
+            <navigator url="/pages/services/hao-app/hao-app" wx:for="{{appList}}" wx:key="*this" style="display: inline-block;">
+                <main-item class="large-item"  avatar="{{item.avatar}}" title="{{item.title}}" isRound/>
+            </navigator>
         </scroll-view>
     </view>
 
@@ -73,9 +79,9 @@
             <view class="sub-title">这里的都是好东西</view>
         </view>
         <view class="sm-grid-container">
-            <view wx:for="{{servicesList}}"  wx:key="*this" class="sm-item" >
+            <navigator url="/pages/services/more-app/more-app" wx:for="{{servicesList}}"  wx:key="*this" class="sm-item" >
                 <main-item avatar="{{item.avatar}}" title="{{item.title}}" isRound isSmall style="display: block; margin-left: 20rpx"/>
-            </view>
+            </navigator>
         </view>
     </view>
 
@@ -85,7 +91,9 @@
             <view class="sub-title">更多机会, 更多精彩, 等你创造</view>
         </view>
         <view style="margin: 30rpx 0">
-            <banner-item wx:for="{{bannerList}}"  wx:key="*this" class="banner-item" info="{{item}}"/>
+            <navigator wx:for="{{bannerList}}"  wx:key="*this"  url="/pages/index/banner/banner?id=1">
+                <banner-item class="banner-item" info="{{item}}"/>
+            </navigator>            
         </view>
     </view>
 

@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "小区好货",
+  "navigationBarTitleText": "更多服务",
   "usingComponents": {
     "header-item":"/components/header-item/header-item"
   }

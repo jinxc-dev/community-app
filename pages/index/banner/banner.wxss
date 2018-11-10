@@ -1,0 +1,21 @@
+.page {
+    color: #333;
+    padding: 30rpx;
+}
+
+.banner-image {
+    width: 100%;
+}
+
+.title {
+    font-size: 45rpx;
+    font-weight: bolder;
+    padding-bottom:30rpx;
+
+}
+
+.context {
+    font-size: 35rpx;
+    color: #6e889f;
+    padding: 20rpx 0;
+}
