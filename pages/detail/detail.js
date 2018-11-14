@@ -13,6 +13,9 @@ Page({
 
     onLoad: function (options) {
         console.log(options);
+        if (options.id == "") {
+            return;
+        }
         this.setData({
             header_icon: options.icon
         })
