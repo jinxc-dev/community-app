@@ -1,18 +1,21 @@
-<view class="page">
+<view class="page" wx:if="{{info != null}}">
     <view class="border-panel">
         <header-item info="{{info}}"/>
     </view>
 
     <view class="border-panel">
         <view class="__title space">服务介绍 </view>
-        <view class="__description long-text">免费证件照拍摄制作，真正免费的便民证件照服务，生成各种规格标准 证件照。 </view>
+        <view class="__description long-text">
+        <!-- 免费证件照拍摄制作，真正免费的便民证件照服务，生成各种规格标准 证件照。  -->
+            {{info.description}}
+        </view>
     </view>
 
     <view class="border-panel">
         <view class="__title space">小程序码 <text class="sub-text">（保存小程序码图片，扫码体验）</text> </view>
         <view class="space">
             <view class="qr-container" style="padding-top: 100rpx">
-                <image class="img__weixin-code" src="/images/tgold-weixin-app.jpg" style="margin:auto;" bindtap="clickImage"/>
+                <image class="img__weixin-code" src="{{info.barcode}}" style="margin:auto;" bindtap="showBarcode"/>
             </view>
             <view class="qr-footer"></view>
         </view>

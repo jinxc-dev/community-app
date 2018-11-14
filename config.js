@@ -3,12 +3,7 @@
  */
 
 //  var host = "apitest.ipaotui.com"
- var host = "api.ipaotui.com"
-const debug = wx.getStorageSync('debug')
-if (debug) {
-  host = "apitest.ipaotui.com"
-}
-
+var host = "community.bootmatestem.cn"
 
 module.exports = {
   host,

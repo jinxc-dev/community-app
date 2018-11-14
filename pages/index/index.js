@@ -1,135 +1,136 @@
 //index.js
 //获取应用实例
-import {getSellers} from '../../utils/apis'
-const app = getApp()
+import {getInfoDataList,
+    getBannerList, 
+    getWechatGroup, 
+    getOwnerList,
+    getSaleAppList,
+    getServicesAppList} from '../../utils/apis'
+import {fetch} from '../../utils/util'
+const app = getApp();
+import {host} from '../../config'
 
 Page({
     data: {
         userInfo: {},
+        uploadHost: "https://" + host + "/upload/",
         hasUserInfo: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
-        banner:[
-            {
-                image: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg'
-            },
-            {
-                image: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg'    
-            },
-            {
-                image: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'    
-            },
-            {
-                image: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg'    
-            }
-        ],
-        weixinGroup: [
-            {
-                avatar: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                title: "ITEM1",
-                subTitle: "SUB-Description",
-                tags: ["tag1", "tag2"]
-            },{
-                avatar: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                title: "ITEM2dfsafasfdasfasfdasfdasfd",
-                subTitle: "SUB-Description",
-                tags: ["tag1", "tag2"]
-            },{
-                avatar: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                title: "ITEM1",
-                subTitle: "SUB-Description",
-                tags: ["tag1", "tag2"]
-            },{
-                avatar: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                title: "ITEM2dfsafasfdasfasfdasfdasfd",
-                subTitle: "SUB-Description",
-                tags: ["tag1", "tag2"]
-            },
-        ],
-        ownerList: [
-            {
-                avatar: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                title: "ITEM1",
-                subTitle: "SUB-Description"
-            }
-        ],
-        appList: [
-            {
-                avatar: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                title: "ITEM1"
-            },{
-                avatar: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                title: "ITEM2dfsafasfdasfasfdasfdasfd"
-            },{
-                avatar: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                title: "ITEM1"
-            }
-        ],
-        servicesList: [
-            {
-                avatar: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                title: "ITEM1"
-            },{
-                avatar: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                title: "ITEM2dfsafasfdasfasfdasfdasfd"
-            },{
-                avatar: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                title: "ITEM1"
-            }, {
-                avatar: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                title: "ITEM1"
-            },{
-                avatar: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                title: "ITEM2dfsafasfdasfasfdasfdasfd"
-            },{
-                avatar: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                title: "ITEM1"
-            }, {
-                avatar: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                title: "ITEM1"
-            },{
-                avatar: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                title: "ITEM2dfsafasfdasfasfdasfdasfd"
-            }
-        ],
-        bannerList: [
-            {
-                image: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                description: "ITEM1",
-                date: "2018-10-17 18:26"
-            },{
-                image: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg',
-                description: "ITEM1",
-                date: "2018-10-17 18:26"
-            },{
-                image: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                description: "ITEM1",
-                date: "2018-10-17 18:26"
-            }
-        ],
+        banner:[],
+        weixinGroup: [],
+        ownerList: [],
+        saleAppList: [],
+        servicesAppList: [],
         communityItems : [
-            {
-                name: '社区基础信息'
-            },{
-                name: 'Item2'
-            },{
-                name: 'Item3'
-            },{
-                name: 'Item4'
-            }
         ]
     },
     onReady: function () {
         console.log('ready');
+
+
     },
 
     onLoad: function () {
         console.log('load');
+        console.log(this.data.canIUse);
+        if (this.data.canIUse) {
+            wx.getUserInfo({
+                success: function (res) {
+                    // console.log(res);
+                    // console.log(JSON.parse(res.rawData));
+                },
+                fail: function (res) {
+                    console.log(res);
+                }
+            });
+
+            wx.login({
+                success(res) {
+                    // console.log(res);
+                }
+            });
+
+            console.log(wx.getStorageSync('session_3rd'));
+        }
+
+        this.loadData();
     },
 
 
     loadData() {
-        
+        var _this = this;
+
+        getInfoDataList({
+            url: 'getAllOfAds',
+            success(res) {
+                _this.data.banner = res;
+                _this.setData({
+                    banner: _this.data.banner
+                });
+                
+            }
+        });
+        getInfoDataList({
+            url: 'getWechatGroups',
+            success(res) {
+                _this.weixinGroup = res;
+                _this.setData({
+                    weixinGroup: _this.weixinGroup
+                })
+            }
+        })
+
+        getInfoDataList({
+            url: 'getOwners',
+            success(res) {
+                _this.ownerList = res;
+                _this.setData({
+                    ownerList: _this.ownerList
+                })
+            }
+        })
+
+        getInfoDataList({
+            url: 'getSaleApps',
+            success(res) {
+                _this.saleAppList = res;
+                _this.setData({
+                    saleAppList: _this.saleAppList
+                })
+            }
+        })
+        getInfoDataList({
+            url: 'getApps',
+            success(res) {
+                _this.servicesAppList = res;
+                _this.setData({
+                    servicesAppList: _this.servicesAppList
+                })
+            }
+        })
+
+        fetch({
+            url:'getMainMenus',
+            data:{},
+            method:'GET',
+            success(res) {
+                var n = res.length;
+                if (res.length < 4) {
+                    n = res.length;
+                }
+                var w_list = [];
+                for (var i = 0; i < n; i++) {
+                    w_list.push(res[i]);
+                }
+                _this.setData({
+                    communityItems: w_list
+                })
+            }
+        })
     },
+
+    onGotUserInfo(e) {
+    }
 
 
 })

@@ -1,27 +1,37 @@
 // pages/search/search.js
+import {getInfoDataByID} from "../../../utils/apis"
+import dateFormat from '../../../utils/dateformat.js'
+const uploadPath = getApp().globalData.uploadPath
 
 Page({
     data: {
-        info: {
-            image: "/images/logo.png",
-            title: "Test Hao App",
-            date:"2018-09-18 18:24"
-        }
+        info: {}
     },
-    onLoad: function () {
-        // this.inputTyping = debounce(this.inputTyping, 300)
-        this.setData({
-            info: this.data.info
+    onLoad: function (options) {
+        this.loadData(options.id);
+    },
+    loadData(id){
+        var _this = this;
+        getInfoDataByID({
+            id: id,
+            url: 'getAdByID',
+            success(res) {
+                _this.data.info = {
+                    image: uploadPath + res.poser_image,
+                    date: dateFormat(new Date(res.posted_on), "mm-dd HH:MM"),
+                    title: res.tag_line 
+                };
+                _this.setData({
+                    info:_this.data.info
+                })
+            }
         })
     },
-    loadData(){
-        
-    },
-    clickImage(url) {
-        console.log(url);
+    chooseImage() {
+        var img = this.data.info.image;
         wx.previewImage({
-            current:'/images/tgold-weixin-app.jpg',
-            urls: ['http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg', 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg']
+            current: img,
+            urls: [img]
         })
     }
 });

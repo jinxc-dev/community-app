@@ -2,38 +2,38 @@
 <view class="main-page">
     <view class="weui-cell header">
         <view class="weui-cell__hd" >
-            <image src="/images/category/1.png" class="item-header__icon"/>
+            <image src="{{header_icon}}" class="item-header__icon"/>
         </view>
         <view class="weui-cell__bd">
-            <view class="item-header__title">AAAAA</view>
-            <view class="item-header__description">AAAAA</view>
+            <view class="item-header__title">{{headerInfo.title}}</view>
+            <view class="item-header__description">{{headerInfo.sub_title}}</view>
         </view>
     </view>
 
     <view class="list-body"> 
-        <view class="menu-list">
-            <view class="menu-list__detail">
+        <view class="menu-list" wx:if="{{isShowList}}">
+            <view class="menu-list__detail" wx:for="{{itemList}}" wx:key="{{item.menu_item_id}}" wx:for-index="idx" bindtap="showDetailItem" data-idx="{{idx}}">
                 <view class="name">
-                    <view> 邻晓晓</view>
+                    <view> {{item.menu_item_name}}</view>
                     <view class="tags">DIKUO</view>
                 </view>
                 <view class="address">
-                    点击复制微信号。关于皇庭世纪小区的一切，我都懂! 
+                    {{item.address}} 
                 </view>            
             </view>
         </view>
-        <view class="info">
-            <navigator url="/pages/map/map" class="detail-info trangle">
+        <view class="info" wx:else>
+            <navigator url="/pages/map/map" class="detail-info trangle" wx:if="{{detailItem.address!=''}}">
                 <image src="/images/map-mark.png" class="detail-info__icon" />
-                <view class="detail-info__text">Address</view>
+                <view class="detail-info__text">{{detailItem.address}}</view>
             </navigator>
-            <view class="detail-info trangle" bindtap="onPhoneTap">
+            <view class="detail-info trangle" bindtap="onPhoneTap"  wx:if="{{detailItem.phone!=''}}">
                 <image src="/images/phone-call.png" class="detail-info__icon" />
-                <view class="detail-info__text">0123456789</view>
+                <view class="detail-info__text">{{detailItem.phone}}</view>
             </view>
-            <view class="detail-info">
+            <view class="detail-info" wx:if="{{detailItem.name!=''}}">
                 <image src="/images/profile.png" class="detail-info__icon" />
-                <view class="detail-info__text">KLG</view>
+                <view class="detail-info__text">{{detailItem.name}}</view>
             </view>
         </view>
     </view>

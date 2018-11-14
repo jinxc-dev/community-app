@@ -14,8 +14,8 @@ Component({
             value: ""
         },
         tags: {
-            type: Array,
-            value:[]
+            type: String,
+            value:""
         },
         isRound: {
             type: Boolean,
@@ -44,7 +44,7 @@ Component({
         if (this.data.subTitle != "") {
             set_data.isSubTitle = true;
         } 
-        if (this.data.tags.length > 0) {
+        if (this.data.tags != "") {
             set_data.isTags = true;
         }
         if (this.data.isRound == true) {

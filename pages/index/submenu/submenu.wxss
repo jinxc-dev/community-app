@@ -1,0 +1,37 @@
+
+.header {
+    border-bottom: 10rpx solid #f0eff4;
+}
+
+.list-body {
+    padding: 20rpx 15px;
+}
+
+.item-header {
+    position: relative;
+    margin-right: 10px;
+}
+.item-header__icon {
+    width: 60rpx; 
+    height: 60rpx; 
+    display: block;
+    margin-right: 10px;
+}
+
+.item-header__title {
+    font-size: 35rpx;
+}
+
+
+.menu-list__detail {
+    padding: 20rpx 15rpx;
+    border-bottom: 1px solid #e6e6e6
+}
+
+.menu-list__detail .name {
+    display: flex;
+    font-size: 35rpx;
+    line-height: 1.0;
+    padding-bottom: 20rpx;
+
+}

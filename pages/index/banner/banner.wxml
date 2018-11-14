@@ -1,10 +1,10 @@
 <view class="page">
     <view class="title">
-        高频刚需，社区团购生鲜电商助力 宝妈在家创业 
+        {{info.title}}
     </view>
     <view class="context">
         皇庭世纪小区
-        <text style="color:#888">11-07 15:23 </text>
+        <text style="color:#888">{{info.date}}</text>
     </view>
-    <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg" class="banner-image" bindtap="clickImage" aspectFill/>
+    <image src="{{info.image}}" class="banner-image" bindtap="chooseImage" aspectFill/>
 </view>

@@ -2,13 +2,15 @@
 Component({
     properties:{
         tags: {
-            type: Array,
-            value: []
+            type: String,
+            value: ""
         }
     },
     ready:function () {
+        console.log("tags:" + this.data.tags);
+        var tags = this.data.tags.split(',');        
         this.setData({
-            tags: this.data.tags
+            tagList: tags
         });
         
     },

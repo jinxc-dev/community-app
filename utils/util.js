@@ -1,29 +1,9 @@
-// const formatTime = date => {
-//   const year = date.getFullYear()
-//   const month = date.getMonth() + 1
-//   const day = date.getDate()
-//   const hour = date.getHours()
-//   const minute = date.getMinutes()
-//   const second = date.getSeconds()
-//
-//   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
-// }
-//
-// const formatNumber = n => {
-//   n = n.toString()
-//   return n[1] ? n : '0' + n
-// }
-//
-// module.exports = {
-//   formatTime: formatTime
-// }
 'use strict'
 import timeago from './timegao.min'
 import dateFormat from './dateformat'
 import distance from './distance'
 import QQMapWX from './qqmap-wx-jssdk.min'
 import {gcj02tobd09} from './coordtransform'
-//国测局坐标转百度经纬度坐标
 
 import {host, qqmapKey} from '../config'
 
@@ -37,7 +17,7 @@ function resolveAdinfo(adInfo) {
     // console.log(adcode.replace(/\d{2}$/, '00'))
     return {
         city, district,
-        district_id: adcode,//行政区划代码
+        district_id: adcode,
         city_id: adcode.replace(/\d{2}$/, '00')
     }
 }
@@ -56,7 +36,6 @@ export function reverseGeocoder(options) {
         complete
     })
 }
-//获取当前地理位置
 export function getCurrentAddressList(options) {
     const {success, complete} = options
     wx.getLocation({
@@ -96,7 +75,7 @@ export function getCurrentAddressList(options) {
         }
     })
 }
-//地点搜索
+
 export function searchAddressList(options) {
     const {
         keyword, success
@@ -113,7 +92,6 @@ export function searchAddressList(options) {
 }
 
 
-//获取当前地址
 export function getCurrentAddress(callback) {
     getCurrentAddressList({
         success(addressList){
@@ -149,7 +127,7 @@ export function getCurrentCity(callback) {
         }
     })
 }
-// 根据坐标获取地址信息
+
 export function getAddressFromLocation(options) {
     const {location, success} = options
     getPois({
@@ -171,67 +149,34 @@ export function getAddressFromLocation(options) {
         }
     })
 }
-//周边POI列表 获取兴趣点
-export function getPois(options) {
-    const {
-        location, success, complete
-    } = options
 
-    qqmapsdk.reverseGeocoder({
-        location,
-        get_poi: 1,
-        success: function (res) {
-            success && success(res.result.pois)
-        },
-        fail: function (err) {
-            console.log(err)
-        },
-        complete
-    })
-}
-
-
-//获取前一页
-export function getPrevPage() {
-    const pages = getCurrentPages()
-    return pages[pages.length - 2]
-}
-
-//获取当前页
-export function getCurrentPage() {
-    const pages = getCurrentPages()
-    return pages[pages.length - 1]
-}
-
-
-//获取数据
 export function fetch(options) {
+    console.log('first');
     wx.request({
-        url: `https://${host}/${options.url}`,
-        data: Object.assign(options.data, {
-            'app_v': 'ipaotui_mall'
-        }),
+        url: `https://${host}/api/${options.url}`,
+        data: Object.assign(options.data, {}),
+        // data: Object.assign(options.data, {
+        //     'app_v': 'ipaotui_mall'
+        // }),
         method: options.method || 'POST',
         header: {
-            'content-type': 'application/x-www-form-urlencoded'
+            'content-type': 'application/json'
         },
         success: res => {
-            // console.log(res)
-            const data = res.data
-            if (data.State === 'Success') {
-                options.success && options.success(data.data)
-            } else {
-                // console.log(data)
-                //由于登录接口改变导致错误 先注释掉
-                // alert(data.info)
-                options.error && options.error(data.info)
+            const data = res.data;
+            if (data.response != undefined) {
+                options.success && options.success(data.response);
             }
-            options.complete && options.complete()
+            // if (data.State === 'Success') {
+            //     options.success && options.success(data.response)
+            // } else {
+            //     options.error && options.error(data.info)
+            // }
+            // options.complete && options.complete()
         }
     })
 }
 
-//提示框
 export function alert(content, callback) {
     wx.showModal({
         title: '提示',
@@ -241,7 +186,6 @@ export function alert(content, callback) {
     })
 }
 
-//确认框
 export function confirm(options) {
     var {
         content, confirmText, cancelText, ok,
@@ -261,7 +205,6 @@ export function confirm(options) {
     })
 }
 
-//加载提示
 export function showLoading() {
     wx.showToast({
         title: '加载中...',
@@ -271,17 +214,14 @@ export function showLoading() {
 
     })
 }
-//隐藏提示
 export function hideLoading() {
     wx.hideToast()
 }
 
-//时间格式化
 export function datetimeFormat(unix_timestamp) {
     return dateFormat(new Date(unix_timestamp * 1000), "mm月dd日 HH:MM")
 }
 
-//倒计时格式化
 export function countdownFormat(count) {
     let seconds = count % 60
     let count1 = Math.floor(count / 60)
@@ -298,16 +238,6 @@ export function splitByKeyword(text, keyword) {
     var arr = text.split(keyword)
     var res = []
 
-
-    // for(const val of arr){
-    //     res.push({
-    //         text: keyword,
-    //         isKeyword: true
-    //     }, {
-    //         text: val,
-    //         isKeyword: false
-    //     })
-    // }
     res.push({
         text: arr[0],
         isKeyword: false
@@ -324,19 +254,17 @@ export function splitByKeyword(text, keyword) {
     return res
 }
 
-//拨打电话
 export function makePhoneCall(phoneNum) {
     confirm({
         content: `是否拨打电话${phoneNum}`,
         confirmText: "拨打",
         ok(){
             wx.makePhoneCall({
-                phoneNumber: phoneNum //仅为示例，并非真实的电话号码
+                phoneNumber: phoneNum 
             })
         }
     })
 }
-//坐标格式化
 export function coordFormat(location) {
     if (location.lat && location.lng) {
         location = {
@@ -345,7 +273,6 @@ export function coordFormat(location) {
         }
     }
 
-    //gcj02转bg09
     var _location = gcj02tobd09(location.longitude, location.latitude)
     return {
         longitude: _location[0],
@@ -390,8 +317,7 @@ export function getUserInfo(cb) {
         })
     }
 }
-//微信支付
-// 微信支付
+
 export function requestPayment(options) {
     var {
         data, success, error, complete
@@ -418,8 +344,6 @@ export function requestPayment(options) {
     }, data))
 }
 
-//...
-//分享
 export function share(options) {
     if(!wxshowSharemeun){
         return alert('当前微信版本过低, 无法使用该功能, 请升级到最新微信版本后重试.')

@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<view class="main-page">
+    <view class="weui-cell header">
+        <view class="weui-cell__hd" wx:if="{{menuInfo}}">
+            <image src="{{iconPath + menuInfo.icon}}" class="item-header__icon"/>
+        </view>
+        <view class="weui-cell__bd">
+            <view class="item-header__title">{{menuInfo.menu_name}}</view>
+        </view>
+    </view>
+
+    <view class="list-body"> 
+        <view class="menu-list">
+            <view class="menu-list__detail" wx:for="{{itemList}}" wx:key="{{item.menu_id}}">
+                {{item.menu_name}}
+            </view>
+        </view>
+    </view>
+</view>
+

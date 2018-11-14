@@ -1,73 +1,73 @@
 
 // const app = getApp()
-
+import {getMenuList, getOwnerList, getInfoDataList} from '../../utils/apis'
+const app = getApp()
 Page({
     data: {
-        menuData:[
-            {
-                icon: "/images/category/1.png",
-                title: "联系人名称",
-                items: [
-                    { name: 'menu1', id: 23},
-                    { name: 'menu1', id: 24},
-                    { name: 'menu1', id: 25},
-                    { name: 'menu1', id: 26},
-                    { name: 'menu1', id: 27},
-                    { name: 'menu1', id: 28},
-                    { name: 'menu1', id: 29},
-                    { name: 'menu1', id: 30},
-                    { name: 'menu1', id: 31},
-                    { name: 'menu1', id: 32}
-                ]
-            }, {
-                icon: "/images/category/2.png",
-                title: "联系人名称",
-                items: [
-                    { name: 'menu1', id: 23},
-                    { name: 'menu1', id: 24},
-                    { name: 'menu1', id: 25}
-                ]
-            }, {
-                icon: "/images/category/3.png",
-                title: "联系人名称",
-                items: [
-                    { name: 'menu1', id: 23},
-                    { name: 'menu1', id: 24}
-                ]
-            }
-        ], 
-        menuInfo: []
+        menuData:[], 
+        menuInfo: [],
+        uploadPath: app.globalData.uploadPath,
+        ownerInfo:{}
     },
     onReady: function () {
-        var w_data = this.data.menuData;
-        for (var i = 0; i < w_data.length; i++) {
-            var w_list = [];
-            var n = 0;
-            for (var j = 0; j < w_data[i].items.length; j++) {
-                if (j % 2 == 0) {
-                    w_list[n] = {};
-                    w_list[n].first = w_data[i].items[j];
-                } else {
-                    w_list[n].second = w_data[i].items[j];
-                    n++;
-                }
-            }
-            this.data.menuInfo.push({
-                icon: w_data[i].icon,
-                title: w_data[i].title,
-                items: w_list
-            });
-        }
 
-        this.setData({
-            menuInfo: this.data.menuInfo
-        })
     },
 
     onLoad: function () {
+        console.log(this.data.uploadPath);
+        this.loadData();
+        
     },
 
     loadData() {
-        
+        var _this = this;
+        getInfoDataList({
+            url: 'getMenuList',
+            success(res) {
+                console.log(res);
+                // var w_data = res;
+                _this.data.menuInfo = _this.rebuildMenuList(res);
+                console.log(_this.data.menuInfo);
+                _this.setData({
+                    menuInfo: _this.data.menuInfo
+                })
+            }
+        })
+
+        getInfoDataList({
+            url:'getOwners',
+            success(res) {
+                _this.ownerList = res;
+                console.log(res);
+                if (res.length > 0) {
+                    _this.ownerInfo = res[0];
+                    _this.setData({
+                        ownerInfo: _this.ownerInfo
+                    })
+                }
+            }
+        })
     },
+
+    rebuildMenuList(data) {
+        var ret_data = [];
+        for (var i = 0; i < data.length; i++) {
+            var w_list = [];
+            var n = 0;
+            for (var j = 0; j < data[i].items.length; j++) {
+                if (j % 2 == 0) {
+                    w_list[n] = {};
+                    w_list[n].first = data[i].items[j];
+                } else {
+                    w_list[n].second = data[i].items[j];
+                    n++;
+                }
+            }
+            ret_data.push({
+                main: data[i].main,
+                items: w_list
+            });
+        }
+        return ret_data;
+    }
 })
