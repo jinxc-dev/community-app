@@ -1,11 +1,6 @@
 //index.js
 //获取应用实例
-import {getInfoDataList,
-    getBannerList, 
-    getWechatGroup, 
-    getOwnerList,
-    getSaleAppList,
-    getServicesAppList} from '../../utils/apis'
+import {getInfoDataList} from '../../utils/apis'
 import {fetch} from '../../utils/util'
 const app = getApp();
 import {host} from '../../config'
@@ -14,45 +9,31 @@ Page({
     data: {
         userInfo: {},
         uploadHost: "https://" + host + "/upload/",
-        hasUserInfo: false,
-        canIUse: wx.canIUse('button.open-type.getUserInfo'),
         banner:[],
         weixinGroup: [],
         ownerList: [],
         saleAppList: [],
         servicesAppList: [],
-        communityItems : [
-        ]
+        communityItems : []
     },
     onReady: function () {
-        console.log('ready');
-
-
     },
 
     onLoad: function () {
-        console.log('load');
-        console.log(this.data.canIUse);
-        if (this.data.canIUse) {
+        if (app.globalData.userInfo) {
+            this.setData({
+                userInfo: app.globalData.userInfo
+            })
+        } else {
             wx.getUserInfo({
-                success: function (res) {
-                    // console.log(res);
-                    // console.log(JSON.parse(res.rawData));
-                },
-                fail: function (res) {
-                    console.log(res);
+                success: res => {
+                    app.globalData.userInfo = res.userInfo
+                    this.setData({
+                        userInfo: res.userInfo
+                    })
                 }
-            });
-
-            wx.login({
-                success(res) {
-                    // console.log(res);
-                }
-            });
-
-            console.log(wx.getStorageSync('session_3rd'));
+            })
         }
-
         this.loadData();
     },
 
@@ -110,11 +91,11 @@ Page({
         })
 
         fetch({
-            url:'getMainMenus',
+            url:'getHomeMenus',
             data:{},
             method:'GET',
             success(res) {
-                var n = res.length;
+                var n = 4;
                 if (res.length < 4) {
                     n = res.length;
                 }
@@ -130,7 +111,16 @@ Page({
     },
 
     onGotUserInfo(e) {
-    }
+    },
 
-
+    onPullDownRefresh:function()
+    {
+        console.log('loadData');
+        wx.showNavigationBarLoading() //在标题栏中显示加载
+    
+        this.loadData();
+        wx.hideNavigationBarLoading();
+        wx.stopPullDownRefresh();
+      //模拟加载
+    },
 })

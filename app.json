@@ -1,6 +1,8 @@
 {
-  "pages": [    
-    "pages/index/index",    
+  "pages": [ 
+    "pages/index/index",
+    "pages/login/login",  
+    "pages/map/map",    
     "pages/guide/guide",    
     "pages/detail/detail",
     "pages/index/submenu/submenu",
@@ -9,9 +11,9 @@
     "pages/services/more-app/more-app",
     "pages/services/hao-app/hao-app",
     "pages/services/group/group",
-    "pages/map/map",    
-    "pages/login/login",
-    "pages/mine/mine",
+    "pages/mine/phone-verify",
+    "pages/mine/add-info",
+    "pages/mine/mine",    
     "pages/search/search",
     "pages/logs/logs"
   ],

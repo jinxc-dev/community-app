@@ -19,16 +19,43 @@ Page({
                     avatar: uploadPath + res.owner_avatar,
                     date: dateFormat(new Date(res.created_date), "mm-dd HH:MM"),
                     name: res.username,
+                    phone: res.phone,
+                    barcode: uploadPath + res.owner_barcode,
                     owner_name: res.community_owner_name,
-                    wechat_id: res.community_owner_wechatid              
+                    wechat_id: res.community_owner_wechatid
                 });
             }
         })
     },
-    clickImage() {
+    chooseBarcode(e) {
+        var img = this.data.barcode;
         wx.previewImage({
-            current:'/images/tgold-weixin-app.jpg',
-            urls: ['http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg', 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg']
+            current:img,
+            urls: [img]
         })
+    },
+
+    onPhoneTap: function (event) {
+        console.log(event);
+        var phone = event.currentTarget.dataset.phone;
+        console.log(phone);
+        if (phone == "" || phone == null) {
+            phone = "123456789";
+        }
+        wx.makePhoneCall({
+            phoneNumber: phone
+        });
+    },
+
+
+    copyTBL:function(e){
+        var self=this;
+        console.log(self.data.wechat_id);
+        wx.setClipboardData({
+            data: self.data.wechat_id,
+            success: function(res) {
+            }
+        });
     }
+
 });

@@ -1,10 +1,12 @@
 
 import {getInfoDataByID} from '../../utils/apis'
+const imgPath = getApp().globalData.uploadPath;
 Page({
     data: {
         itemList: [],
         menuInfo: {},
         headerInfo: {},
+        imgPath: imgPath,
         isShowList: true
     },
     onReady: function () {
@@ -22,9 +24,10 @@ Page({
         this.loadData(options.id);
     },
     
-    onPhoneTap: function () {
+    onPhoneTap: function (event) {
+        var phone = event.currentTarget.dataset.phone;
         wx.makePhoneCall({
-            phoneNumber: '1340000'
+            phoneNumber: phone
         });
     },
     loadData(id) {

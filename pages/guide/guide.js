@@ -69,5 +69,15 @@ Page({
             });
         }
         return ret_data;
-    }
+    },
+    onPullDownRefresh:function()
+    {
+        console.log('loadData');
+        wx.showNavigationBarLoading() //在标题栏中显示加载
+        this.loadData();
+        wx.hideNavigationBarLoading();
+        wx.stopPullDownRefresh();
+      //模拟加载
+    },
+
 })

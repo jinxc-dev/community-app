@@ -48,3 +48,36 @@ export function getInfoDataList(options) {
     })
 }
 
+export function setInfoData(options) {
+    let {success} = options;
+    fetch({
+        url:options.url,
+        data:options.data,
+        success
+    })
+}
+
+export function getUserInfo(options) {
+    let {success} = options;
+    fetch({
+        url: "getUserInfo",
+        data: options.data,
+        success
+    })
+}
+
+export function userLogin(options) {
+    let {success} = options;
+    wx.login({
+        success(res) {
+            fetch({
+                url: "userLogin",
+                data: {
+                    code: res.code
+                },
+                success
+            })
+        }
+    })
+}
+

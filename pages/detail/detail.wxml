@@ -23,11 +23,11 @@
             </view>
         </view>
         <view class="info" wx:else>
-            <navigator url="/pages/map/map" class="detail-info trangle" wx:if="{{detailItem.address!=''}}">
+            <navigator url="/pages/map/map?address={{detailItem.address}}" class="detail-info trangle" wx:if="{{detailItem.address!=''}}">
                 <image src="/images/map-mark.png" class="detail-info__icon" />
                 <view class="detail-info__text">{{detailItem.address}}</view>
             </navigator>
-            <view class="detail-info trangle" bindtap="onPhoneTap"  wx:if="{{detailItem.phone!=''}}">
+            <view class="detail-info trangle" bindtap="onPhoneTap"  wx:if="{{detailItem.phone!=''}}" data-phone="{{detailItem.phone}}">
                 <image src="/images/phone-call.png" class="detail-info__icon" />
                 <view class="detail-info__text">{{detailItem.phone}}</view>
             </view>
@@ -35,10 +35,10 @@
                 <image src="/images/profile.png" class="detail-info__icon" />
                 <view class="detail-info__text">{{detailItem.name}}</view>
             </view>
+            <view class="detail-icon" wx:if="{{detailItem.icon!=''}}">
+                <image src="{{imgPath + detailItem.icon}}" mode="widthFix" style="width: 400rpx" />
+            </view>
         </view>
     </view>
-
-
-
 </view>
 

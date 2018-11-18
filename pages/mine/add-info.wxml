@@ -1,0 +1,45 @@
+
+<view class="page">
+    <view class="weui-cells input-container">
+        <view class="weui-cell weui-cell_input weui-cell_vcode">
+            <view class="weui-cell__hd">
+                <view class="weui-label">收货人</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input value="{{name}}" name="name" class="weui-input" placeholder="请填写收货人姓名" bindinput="onInputName"/>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input weui-cell_vcode">
+            <view class="weui-cell__hd">
+                <view class="weui-label">手机号码</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input type="digit" value="{{phone}}" maxlength="11" bindinput="onInputPhone" name="phone" class="weui-input" placeholder="请填写收货人联系电话" />
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input weui-cell_vcode">
+            <view class="weui-cell__hd">
+                <view class="weui-label">小区/社区</view>
+            </view>
+            <view class="weui-cell__bd">
+                <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" name="community_id">
+                    <view class="picker">
+                        {{array[index]}}
+                    </view>
+                </picker>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input weui-cell_vcode">
+            <view class="weui-cell__hd">
+                <view class="weui-label">楼号一门牌号</view>
+            </view>
+            <view class="weui-cell__bd" >
+                <textarea name="address" placeholder="例:A栋3单元407室" cursor-spacing="10" style="width: 350rpx; height: 150rpx;" name="address" value="{{address}}" bindinput="onInputAddress"/>
+            </view>
+        </view>
+
+    </view>
+    <view class="weui-btn-area" style="padding-top: 40rpx">
+        <button class="weui-btn" type="primary" bindtap="saveUserInfo">保存地址</button>
+    </view>
+</view>

@@ -1,101 +1,107 @@
 <!--index.wxml-->
-<view class='topBar' >
-    <view class='item-title'>皇庭世纪小区</view>
-</view>
-<view class="main-page">
-    <view class="banner">
-        <swiper indicator-dots="true" autoplay="true" interval="5000" duration="500" style="height:300rpx" >
-            <navigator url="/pages/index/banner/banner?id={{item.banner_ads_id}}" wx:for="{{banner}}" wx:key="*this">
-                <swiper-item>
-                    <image src="{{uploadHost + item.banner_image}}" class="slide-image"/>
-                </swiper-item>
-
-            </navigator>
-        </swiper>
+<!-- <scroll-view class="page" scroll-y="true" enable-back-to-top="true" bindscrolltoupper="reLoading" style="height: 100%"> -->
+<view class="page">
+    <view class='topBar' >
+        <view class='item-title'>皇庭世纪小区</view>
     </view>
-<!-- <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">获取用户信息</button> -->
-    <view class="divider"></view>
-    <view class="community-items">
-        <view class="weui-grids">
-            <view class="weui-grid" style="padding-bottom: 10px" >
-                <navigator url="/pages/guide/guide" open-type="switchTab"  class="main-item">
-                    <view class="">小区指南</view>
-                </navigator >
-            </view>
-            <view class="weui-grid" style="width: 66.66%">
-                <view class="weui-grids">
-                    <block wx:for="{{communityItems}}" wx:key="*this">
-                        <view class="weui-grid space" style="width: 50%">
-                            <navigator url="/pages/index/submenu/submenu?id={{item.menu_id}}" style="display:block">
-                                <view class="sub-item">{{item.menu_name}}</view>
-                            </navigator>
-                        </view>
-                    </block>
+    <view class="main-page">
+        <view class="banner">
+            <swiper indicator-dots="true" autoplay="true" interval="5000" duration="500" style="height:300rpx" >
+                <navigator url="/pages/index/banner/banner?id={{item.banner_ads_id}}" wx:for="{{banner}}" wx:key="{{item.index}}">
+                    <swiper-item>
+                        <image src="{{uploadHost + item.banner_image}}" class="slide-image"/>
+                    </swiper-item>
+
+                </navigator>
+            </swiper>
+        </view>
+    <!-- <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">获取用户信息</button> -->
+        <view class="divider"></view>
+        <view class="community-items">
+            <view class="weui-grids">
+                <view class="weui-grid" style="padding-bottom: 10px" >
+                    <navigator url="/pages/guide/guide" open-type="switchTab"  class="main-item">
+                        <view class="">小区指南</view>
+                    </navigator >
+                </view>
+                <view class="weui-grid" style="width: 66.66%">
+                    <view class="weui-grids">
+                        <block wx:for="{{communityItems}}" wx:key="{{item.index}}">
+                            <view class="weui-grid space" style="width: 50%">
+                                <navigator url="/pages/index/submenu/submenu?id={{item.menu_id}}" style="display:block">
+                                    <view class="sub-item">{{item.menu_name}}</view>
+                                </navigator>
+                            </view>
+                        </block>
+                    </view>
                 </view>
             </view>
         </view>
-    </view>
 
-    <view class="divider"></view>
-    <view class="weixin-group">
-        <view class="header trangle">
-            <view class="main-title">小区互动</view>
-            <view class="sub-title">业主自建的互动群</view>
+        <view class="divider"></view>
+        <view class="weixin-group">
+            <view class="header trangle">
+                <view class="main-title">小区互动</view>
+                <view class="sub-title">业主自建的互动群</view>
+            </view>
+            <scroll-view class="item-container" scroll-x style="white-space: nowrap;">
+                <navigator url="/pages/services/group/group?id={{item.wechat_group_id}}" wx:for="{{weixinGroup}}" wx:key="{{item.index}}" style="display: inline-block;">
+                    <main-item class="large-item"  avatar="{{uploadHost + item.image}}" title="{{item.wechat_group_name}}" tags="{{item.tag}}"/>
+                </navigator>
+            </scroll-view>
         </view>
-        <scroll-view class="item-container" scroll-x style="white-space: nowrap;">
-            <navigator url="/pages/services/group/group?id={{item.wechat_group_id}}" wx:for="{{weixinGroup}}" wx:key="*this" style="display: inline-block;">
-                <main-item class="large-item"  avatar="{{uploadHost + item.image}}" title="{{item.wechat_group_name}}" tags="{{item.tag}}"/>
-            </navigator>
-        </scroll-view>
-    </view>
-    <view class="divider"></view>
-    <view class="owner-list">
-        <view class="header trangle">
-            <view class="main-title">小区达人</view>
-            <view class="sub-title">小区里的牛人</view>
+        <view class="divider"></view>
+        <view class="owner-list" wx:if="{{ownerList.length > 0}}">
+            <view class="header trangle">
+                <view class="main-title">小区达人</view>
+                <view class="sub-title">小区里的牛人</view>
+            </view>
+            <scroll-view class="item-container" scroll-x style="white-space: nowrap;">
+                <navigator url="./owner/owner?id={{item.community_owner_id}}" wx:for="{{ownerList}}" wx:key="{{item.index}}" style="display: inline-block;">
+                    <main-item class="large-item" avatar="{{uploadHost + item.owner_avatar}}" title="{{item.community_owner_name}}" subTitle="{{item.subTitle}}" isRound/>
+                </navigator>
+            </scroll-view>
         </view>
-        <scroll-view class="item-container" scroll-x style="white-space: nowrap;">
-            <navigator url="./owner/owner?id={{item.community_owner_id}}" wx:for="{{ownerList}}" wx:key="*this" style="display: inline-block;">
-                <main-item class="large-item" avatar="{{uploadHost + item.owner_avatar}}" title="{{item.community_owner_name}}" subTitle="{{item.subTitle}}" isRound/>
-            </navigator>
-        </scroll-view>
-    </view>
 
-    <view class="owner-list">
-        <view class="header trangle">
-            <view class="main-title">小区好货</view>
-            <view class="sub-title">这里的都是好东西</view>
+        <view class="owner-list">
+            <view class="header trangle">
+                <view class="main-title">小区好货</view>
+                <view class="sub-title">这里的都是好东西</view>
+            </view>
+            <scroll-view class="item-container" scroll-x style="white-space: nowrap;">
+                <navigator url="/pages/services/hao-app/hao-app?id={{item.wechat_miniapp_id}}" wx:for="{{saleAppList}}" wx:key="{{item.index}}" style="display: inline-block;">
+                    <main-item class="large-item"  avatar="{{uploadHost + item.image}}" title="{{item.wechat_miniapp_name}}" isRound/>
+                </navigator>
+            </scroll-view>
         </view>
-        <scroll-view class="item-container" scroll-x style="white-space: nowrap;">
-            <navigator url="/pages/services/hao-app/hao-app?id={{item.wechat_miniapp_id}}" wx:for="{{saleAppList}}" wx:key="*this" style="display: inline-block;">
-                <main-item class="large-item"  avatar="{{uploadHost + item.image}}" title="{{item.wechat_miniapp_name}}" isRound/>
-            </navigator>
-        </scroll-view>
-    </view>
 
-    <view class="service-list">
-        <view class="header">
-            <view class="main-title">更多服务</view>
-            <view class="sub-title">这里的都是好东西</view>
+        <view class="service-list">
+            <view class="header">
+                <view class="main-title">更多服务</view>
+                <view class="sub-title">这里的都是好东西</view>
+            </view>
+            <view class="sm-grid-container">
+                <navigator url="/pages/services/more-app/more-app?id={{item.wechat_miniapp_id}}" wx:for="{{servicesAppList}}"  wx:key="{{item.index}}" class="sm-item" >
+                    <main-item avatar="{{uploadHost + item.image}}" title="{{item.wechat_miniapp_name}}" isRound isSmall style="display: block; margin-left: 20rpx"/>
+                </navigator>
+            </view>
         </view>
-        <view class="sm-grid-container">
-            <navigator url="/pages/services/more-app/more-app?id={{item.wechat_miniapp_id}}" wx:for="{{servicesAppList}}"  wx:key="*this" class="sm-item" >
-                <main-item avatar="{{uploadHost + item.image}}" title="{{item.wechat_miniapp_name}}" isRound isSmall style="display: block; margin-left: 20rpx"/>
-            </navigator>
-        </view>
-    </view>
 
-    <view class="banner-list">
-        <view class="header">
-            <view class="main-title">小区攻略</view>
-            <view class="sub-title">更多机会, 更多精彩, 等你创造</view>
+        <view class="banner-list">
+            <view class="header">
+                <view class="main-title">小区攻略</view>
+                <view class="sub-title">更多机会, 更多精彩, 等你创造</view>
+            </view>
+            <view style="margin: 30rpx 0">
+                <navigator wx:for="{{banner}}"  wx:key="{{item.index}}"  url="/pages/index/banner/banner?id={{item.banner_ads_id}}">
+                    <banner-item class="banner-item" info="{{item}}" uploadPath="{{uploadHost}}"/>
+                </navigator>            
+            </view>
         </view>
-        <view style="margin: 30rpx 0">
-            <navigator wx:for="{{banner}}"  wx:key="*this"  url="/pages/index/banner/banner?id={{item.banner_ads_id}}">
-                <banner-item class="banner-item" info="{{item}}" uploadPath="{{uploadHost}}"/>
-            </navigator>            
-        </view>
-    </view>
 
+    </view>
 </view>
+<!-- </scroll-view> -->
+
+
 

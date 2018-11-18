@@ -1,0 +1,17 @@
+
+.weui-label {
+  width: 220rpx;
+}
+
+.weui-cell {
+  font-size: 32rpx;
+  padding: 20rpx 15px;
+}
+
+.input-container {
+  border-top: 10rpx solid #f0eff4;
+}
+
+.weui-btn {
+  border-radius: 23px;
+}

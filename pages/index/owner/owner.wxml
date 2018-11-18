@@ -22,7 +22,7 @@
             <view class="weui-flex">
                 <view class="weui-flex__item">
                     <view class="info-container">
-                        <view class="info-container__rect">
+                        <view class="info-container__rect" data-phone="{{phone}}" bindtap="onPhoneTap">
                             <image src="/images/icons/phone-call.png" class="rect__icon" mode="aspectFit"/>
                             <view class="rect__text">{{phone}}</view>
                         </view>
@@ -34,7 +34,7 @@
                 <view class="weui-flex__item">
                     <view class="info-container">
                         <view class="info-container__rect">
-                            <image src="/images/icons/wechat-logo.png" class="rect__icon" mode="aspectFit"/>
+                            <image src="/images/icons/wechat-logo.png" class="rect__icon" mode="aspectFit" bindlongtap="copyTBL"/>
                             <view class="rect__text">{{wechat_id}}</view>
                         </view>
                         <view class="info-container__text">
@@ -45,7 +45,7 @@
                 <view class="weui-flex__item">
                     <view class="info-container">
                         <view class="info-container__rect">
-                            <image src="{{barcode}}" class="rect__weixin"/>
+                            <image src="{{barcode}}" class="rect__weixin" bindtap="chooseBarcode"/>
                         </view>
                         <view class="info-container__text">
                             保存二维码图片扫码加微信好友

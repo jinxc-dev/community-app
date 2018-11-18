@@ -1,7 +1,9 @@
 {
-  "navigationBarTitleText": "松鼠邻家",
+  "navigationBarTitleText": "惠邻家",
   "navigationBarTextStyle": "light",
   "navigationBarBackgroundColor": "#da3925",
+  "backgroundColor": "#da3925",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "main-item": "/components/main-item/index",
     "banner-item": "/components/banner-item/banner-item"

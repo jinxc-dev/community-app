@@ -11,9 +11,7 @@ Component({
         }
     },
     ready:function () {
-        console.log(this.data.info);
         this.data.info.posted_on = dateFormat(new Date(this.data.info.posted_on), "mm-dd HH:MM");
-        // console.log(reach_date);
         this.setData({
             info: this.data.info
         })

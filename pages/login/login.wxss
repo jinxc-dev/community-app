@@ -3,27 +3,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #ec513f;
+  padding-top: 150rpx;
+
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.app-mark {
+    padding: 70rpx;
+    width: 200rpx;
+    /* height: 200rpx; */
 }
 
-.userinfo-nickname {
-  color: #aaa;
+.userinfo-btn {
+  background-color: #ec513f;
+  color: #fff;
+  font-size: 40rpx;
+  line-height: 1;
+  padding: 30rpx 60rpx;
+  border-radius: 50rpx;
 }
 
-.usermotto {
-  margin-top: 200px;
-}
 
-.weui-label {
-  width: 5em;
-}
-.weui-vcode-btn {
-  min-width: 4em;
-  text-align: center;
-}

@@ -36,6 +36,15 @@ export function reverseGeocoder(options) {
         complete
     })
 }
+
+export function geocoder(options) {
+    const {address, success, fail} = options
+    qqmapsdk.geocoder({
+        address: address,
+        success,
+        fail
+    })    
+}
 export function getCurrentAddressList(options) {
     const {success, complete} = options
     wx.getLocation({
@@ -151,7 +160,6 @@ export function getAddressFromLocation(options) {
 }
 
 export function fetch(options) {
-    console.log('first');
     wx.request({
         url: `https://${host}/api/${options.url}`,
         data: Object.assign(options.data, {}),

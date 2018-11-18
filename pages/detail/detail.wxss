@@ -88,3 +88,10 @@
 .trangle {
     border-color: rgb(129, 122, 122);
 }
+
+.detail-icon {
+    padding-top: 70rpx;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+}

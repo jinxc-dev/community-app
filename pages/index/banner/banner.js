@@ -16,10 +16,12 @@ Page({
             id: id,
             url: 'getAdByID',
             success(res) {
+                console.log(res);
                 _this.data.info = {
                     image: uploadPath + res.poser_image,
                     date: dateFormat(new Date(res.posted_on), "mm-dd HH:MM"),
-                    title: res.tag_line 
+                    title: res.tag_line,
+                    link: res.tag_line
                 };
                 _this.setData({
                     info:_this.data.info
