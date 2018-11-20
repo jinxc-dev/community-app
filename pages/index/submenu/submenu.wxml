@@ -11,7 +11,7 @@
 
     <view class="list-body"> 
         <view class="menu-list">
-            <navigator url="../../detail/detail?id={{item.menu_id}}" class="menu-list__detail" wx:for="{{itemList}}" wx:key="{{item.menu_id}}">
+            <navigator url="../../detail/detail?id={{item.menu_id}}&icon={{iconPath + menuInfo.icon}}" class="menu-list__detail" wx:for="{{itemList}}" wx:key="{{item.menu_id}}">
                 {{item.menu_name}}
             </navigator>
         </view>

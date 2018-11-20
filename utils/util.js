@@ -45,6 +45,16 @@ export function geocoder(options) {
         fail
     })    
 }
+
+export function calculateDistance(options) {
+    const {pos1, pos2, success, fail} = options;
+    qqmapsdk.calculateDistance({
+        to: [pos1, pos2],
+        success,
+        fail
+    })
+}
+
 export function getCurrentAddressList(options) {
     const {success, complete} = options
     wx.getLocation({

@@ -15,14 +15,18 @@
             <view class="menu-list__detail" wx:for="{{itemList}}" wx:key="{{item.menu_item_id}}" wx:for-index="idx" bindtap="showDetailItem" data-idx="{{idx}}">
                 <view class="name">
                     <view> {{item.menu_item_name}}</view>
-                    <view class="tags">DIKUO</view>
+                    <view class="tags" wx:if="{{idx==0}}">离你最近</view>
                 </view>
                 <view class="address">
-                    {{item.address}} 
+                    {{item.address}} ({{item.distance}}km)
                 </view>            
             </view>
         </view>
         <view class="info" wx:else>
+            <view class="detail-info" wx:if="{{detailItem.name!=''}}">
+                <image src="/images/profile.png" class="detail-info__icon" />
+                <view class="detail-info__text">{{detailItem.name}}</view>
+            </view>
             <navigator url="/pages/map/map?address={{detailItem.address}}" class="detail-info trangle" wx:if="{{detailItem.address!=''}}">
                 <image src="/images/map-mark.png" class="detail-info__icon" />
                 <view class="detail-info__text">{{detailItem.address}}</view>
@@ -30,10 +34,6 @@
             <view class="detail-info trangle" bindtap="onPhoneTap"  wx:if="{{detailItem.phone!=''}}" data-phone="{{detailItem.phone}}">
                 <image src="/images/phone-call.png" class="detail-info__icon" />
                 <view class="detail-info__text">{{detailItem.phone}}</view>
-            </view>
-            <view class="detail-info" wx:if="{{detailItem.name!=''}}">
-                <image src="/images/profile.png" class="detail-info__icon" />
-                <view class="detail-info__text">{{detailItem.name}}</view>
             </view>
             <view class="detail-icon" wx:if="{{detailItem.icon!=''}}">
                 <image src="{{imgPath + detailItem.icon}}" mode="widthFix" style="width: 400rpx" />
