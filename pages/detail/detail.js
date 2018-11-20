@@ -95,7 +95,7 @@ Page({
                         latitude: res.result.location.lat,
                         longitude:res.result.location.lng 
                     };
-                    console.log(distance(pos.latitude, pos.longitude, _this.myLocation.latitude, _this.myLocation.longitude));
+                    // console.log(distance(pos.latitude, pos.longitude, _this.myLocation.latitude, _this.myLocation.longitude));
                     calculateDistance({
                         pos1: pos,
                         pos2: _this.myLocation,
