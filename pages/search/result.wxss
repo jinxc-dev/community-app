@@ -1,0 +1,33 @@
+.page {
+    padding: 8px 15px 15px;
+}
+.menu-list {
+    padding-top: 30rpx;
+}
+.menu-list__detail {
+    padding: 20rpx 15rpx;
+    border-bottom: 1px solid #e6e6e6
+}
+
+.menu-list__detail .name {
+    display: flex;
+    font-size: 35rpx;
+    line-height: 1.0;
+    padding-bottom: 20rpx;
+
+}
+
+.menu-list__detail .address {
+    padding: 10rpx 0 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    font-size: 25rpx;
+    color: #aaa;
+}
+
+.keyword {
+    background-color: #f4f4f4;
+    font-size: 35rpx;
+    border-radius: 10rpx;
+    padding: 10rpx 30rpx;
+}

@@ -1,0 +1,54 @@
+
+.weui-search-bar {
+    background-color: #fff;
+    border: none;
+    padding: 8px 15px;
+}
+.weui-search-bar__box {
+    background-color: #f4f4f4;
+}
+
+.search-btn {
+    margin-left:10px;
+    /* margin-right:10px; */
+    line-height:28px;
+    white-space:nowrap;
+    background-color: #ffd203;
+    padding: 5rpx 30rpx;
+    font-size: 32rpx;
+    border-radius: 10rpx;
+}
+
+.search-key-list {
+    padding: 5px 15px;
+}
+
+.remove-form {
+    display: flex;
+    box-sizing: border-box;
+    
+}
+
+.remove-form-title {
+    position: relative;
+    flex: auto;
+    -webkit-box-flex: 1;    
+}
+
+.remove-btn {
+    width: 50rpx;
+}
+.key-list {
+    padding: 20rpx 0;
+}
+.key-item {
+    padding: 10rpx 0;
+}
+.border-item {
+    display: inline-block;
+    padding: 15rpx 35rpx;
+    background-color: #f4f4f4;
+    border-radius: 40rpx;
+    font-size: 32rpx;
+}
+

@@ -1,6 +1,6 @@
 {
   "pages": [ 
-    "pages/index/index",
+     "pages/index/index",
     "pages/login/login",  
     "pages/map/map",    
     "pages/guide/guide",    
@@ -16,6 +16,7 @@
     "pages/mine/add-info",
     "pages/mine/mine",    
     "pages/search/search",
+    "pages/search/result",
     "pages/logs/logs"
   ],
   "window": {

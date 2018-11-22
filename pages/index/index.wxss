@@ -87,6 +87,7 @@
 .sm-grid-container {
     margin: 15rpx 0 30rpx; 
     display:inline-block;
+    width:100%;
 }
 
 .banner-item {

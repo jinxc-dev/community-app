@@ -16,14 +16,24 @@ Page({
     },
 
     onLoad: function (options) {
+        console.log(options);
+        if (options.itemID != undefined) {
+            this.showDetailItemByID(options.itemID);
+            this.setData({
+                header_icon: "/images/search-icon.png"
+            })
+            return;
+        }
+
         if (options.id == "") {
             return;
         }
         this.setData({
             header_icon: options.icon
-        })        
+        })
         this.myLocation = {};
         var _this = this;
+
         wx.getLocation({
             type: 'gcj02', 
             success: function(res) {
@@ -35,8 +45,6 @@ Page({
                 _this.loadData(options.id);
             }
         })
-
-        // this.loadData(options.id);
     },
     
     onPhoneTap: function (event) {
@@ -77,7 +85,29 @@ Page({
             },
             detailItem: this.data.itemList[idx]
         })
+    },
 
+    showDetailItemByID(id) {
+        var _this = this;
+        getInfoDataByID({
+            url: 'getItemByID',
+            id: id,
+            success(res) {
+                var data = res;
+                var sub_name = "";
+                if (getApp().globalData.nowCommunity != null) {
+                    sub_name = getApp().globalData.nowCommunity.community_name;
+                }
+                _this.setData({
+                    isShowList: false,
+                    headerInfo: {
+                        title: data.menu_item_name,
+                        sub_title: sub_name
+                    },
+                    detailItem: data
+                })
+            }
+        })
     },
 
     calcDistance(items) {

@@ -4,9 +4,7 @@ Page({
     data: {
         inputShowed: false,
         inputVal: "",
-        page: 0,
-        hasMore: true,
-        loading: false
+        keyList: []
     },
     showInput: function () {
         this.setData({
@@ -19,40 +17,51 @@ Page({
             inputShowed: false
         });
     },
-    clearInput: function () {
-        this.setData({
-            inputVal: ""
-        });
-    },
-    inputTyping: function (e) {
-        const {value} = e.detail
-        this.setData({
-            inputVal: value,
-            page: 0,
-            hasMore: true,
-            loading: false
-        });
-        if (value) {
-            this.loadData()
-        }
 
+    inputTyping: function (e) {
+        const {value} = e.detail;
+        this.data.inputVal = e.detail.value;
+        this.setData({
+            inputVal: value
+        });
     },
-    /**
-     * 生命周期函数--监听页面加载
-     */
     onLoad: function () {
-        // this.inputTyping = debounce(this.inputTyping, 300)
+        this.data.keyList = wx.getStorageSync("key-list");
+        if (this.data.keyList == "") {
+            this.data.keyList = [];
+        }
+        this.setData({
+            keyList: this.data.keyList
+        })
     },
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-        // const {loading, hasMore} = this.data
-        // if (hasMore && !loading) {
-        //     this.loadData()
-        // }
+
+    onSearch: function () {
+        if (this.data.inputVal == "") 
+            return;
+
+        this.data.keyList.push(this.data.inputVal);
+        wx.setStorageSync("key-list", this.data.keyList);
+
+        this.setData({
+            keyList: this.data.keyList
+        })
+        wx.navigateTo({
+            url: "./result?key=" + this.data.inputVal
+        })
     },
-    loadData(){
-        
-    }
+
+    clearInput() {
+        this.inputVal = "";
+        this.setData({
+            inputVal: "",
+            inputShowed: false
+        })
+    },
+    clearKeyList() {
+        this.setData({
+            keyList: []
+        });
+        this.keyList = [];
+        wx.removeStorageSync("key-list");
+    },
 });

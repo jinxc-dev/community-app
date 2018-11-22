@@ -1,0 +1,14 @@
+<!--pages/search/search.wxml-->
+<view class="page">
+    <view class="keyword" bindtap="goBack">{{keyword}}</view>
+    <view class="menu-list">
+        <view class="menu-list__detail" wx:for="{{itemList}}" wx:key="{{item.menu_item_id}}" bindtap="goDetail" data-id="{{item.menu_item_id}}">
+            <view class="name">
+                <view> {{item.menu_item_name}}</view>
+            </view>
+            <view class="address">
+                {{item.address}}
+            </view>            
+        </view>
+    </view>
+</view>

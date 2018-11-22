@@ -37,7 +37,7 @@
 }
 
 .title {
-    line-height: 0.8;
+    /* line-height: 0.8; */
     padding-bottom: 20rpx;
     word-wrap: break-word;
 }
