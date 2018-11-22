@@ -5,6 +5,7 @@
     "pages/map/map",    
     "pages/guide/guide",    
     "pages/detail/detail",
+    "pages/detail/feedback",
     "pages/index/submenu/submenu",
     "pages/index/banner/banner",
     "pages/index/owner/owner",

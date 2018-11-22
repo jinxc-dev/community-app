@@ -2,7 +2,7 @@
 <!-- <scroll-view class="page" scroll-y="true" enable-back-to-top="true" bindscrolltoupper="reLoading" style="height: 100%"> -->
 <view class="page">
     <view class='topBar' >
-        <view class='item-title'>皇庭世纪小区</view>
+        <view class='item-title'>{{communityName}}</view>
     </view>
     <view class="main-page">
         <view class="banner">
@@ -37,7 +37,7 @@
             </view>
         </view>
         <view class="divider"></view>
-        <view class="owner-list">
+        <view class="owner-list" wx:if="{{saleAppList.length > 0}}">
             <view class="header trangle">
                 <view class="main-title">小区好货</view>
                 <view class="sub-title">这里的都是好东西</view>
@@ -49,7 +49,7 @@
             </scroll-view>
         </view>
         <view class="divider"></view>
-        <view class="weixin-group">
+        <view class="weixin-group" wx:if="{{weixinGroup.length > 0}}">
             <view class="header trangle">
                 <view class="main-title">小区互动</view>
                 <view class="sub-title">业主自建的互动群</view>
@@ -72,7 +72,7 @@
                 </navigator>
             </scroll-view>
         </view>
-        <view class="service-list">
+        <view class="service-list" wx:if="{{servicesAppList.length > 0}}">
             <view class="header">
                 <view class="main-title">更多服务</view>
                 <view class="sub-title">这里的都是好东西</view>
@@ -83,10 +83,10 @@
                 </navigator>
             </view>
         </view>
-        <view class="banner-list">
+        <view class="banner-list" wx:if="{{banner.length > 0}}">
             <view class="header">
-                <view class="main-title">小区攻略</view>
-                <view class="sub-title">更多机会, 更多精彩, 等你创造</view>
+                <view class="main-title">更多精彩</view>
+                <view class="sub-title">更多机会，等你来</view>
             </view>
             <view style="margin: 30rpx 0">
                 <navigator wx:for="{{banner}}"  wx:key="{{item.index}}"  url="/pages/index/banner/banner?id={{item.banner_ads_id}}">

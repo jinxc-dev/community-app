@@ -1,15 +1,15 @@
-<!-- <view class="page">
+<view class="page">
     <view class="title">
         {{info.title}}
     </view>
     <view class="context">
-        皇庭世纪小区
+        {{communityName}}
         <text style="color:#888">{{info.date}}</text>
     </view>
     <image src="{{info.image}}" class="banner-image" bindtap="chooseImage" aspectFill/>
-</view> -->
-<view class="page-body">
+</view>
+<!-- <view class="page-body">
     <view class="page-section page-section-gap">
         <web-view src="{{info.link}}"></web-view>
     </view>
-</view>
+</view> -->

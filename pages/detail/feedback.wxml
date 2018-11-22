@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class='page' >
+    <view class="owner-info">
+        <textarea class="input-text" placeholder="请描述本条信息的错误之处，我们会核实并进行订正。例如：电话号码有误，正确的话号码应该为XXX。" maxlength="300" bindinput="onInputContext"/>
+    </view>
+
+    <view class="weui-btn-area" style="padding-top: 40rpx">
+        <button class="weui-btn" type="primary" bindtap="saveContext">提交</button>
+    </view>
+</view>

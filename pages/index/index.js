@@ -1,46 +1,60 @@
 //index.js
 //获取应用实例
-import {getInfoDataList} from '../../utils/apis'
+import {getInfoDataList, getUserInfo} from '../../utils/apis'
 import {fetch} from '../../utils/util'
 const app = getApp();
 import {host} from '../../config'
 
 Page({
     data: {
-        userInfo: {},
         uploadHost: "https://" + host + "/upload/",
         banner:[],
         weixinGroup: [],
         ownerList: [],
         saleAppList: [],
         servicesAppList: [],
-        communityItems : []
+        communityItems : [],
+        communityName: "",
     },
     onReady: function () {
     },
 
     onLoad: function () {
-        if (app.globalData.userInfo) {
-            this.setData({
-                userInfo: app.globalData.userInfo
-            })
-        } else {
-            wx.getUserInfo({
-                success: res => {
-                    app.globalData.userInfo = res.userInfo
-                    this.setData({
-                        userInfo: res.userInfo
-                    })
+        console.log("onLoad");
+        var _this = this;
+        var openid = wx.getStorageSync('openid');
+        getUserInfo({
+            data: {
+                openid: openid
+            },
+            success(res) {
+                var data = res.data;
+                app.globalData.user_comm_id = data.comm_id;
+                _this.loadData();
+                var c_list = app.globalData.communityList;
+                for (var i = 0; i < c_list.length; i++ ) {
+                    if (data.comm_id == c_list[i].community_id) {
+                        _this.data.communityName = c_list[i].community_name;
+                        app.globalData.nowCommunity = c_list[i];
+                        console.log(app.globalData);
+                        break;
+                    }
                 }
-            })
-        }
-        this.loadData();
+                _this.setData({
+                    communityName: _this.data.communityName
+                })
+
+            }
+        })
+
+        // this.loadData();
+        
     },
 
 
     loadData() {
         var _this = this;
-
+        console.log('loadData');
         getInfoDataList({
             url: 'getAllOfAds',
             success(res) {
@@ -91,7 +105,7 @@ Page({
         })
 
         fetch({
-            url:'getHomeMenus',
+            url:'getHomeMenus' + "/" + getApp().globalData.user_comm_id,
             data:{},
             method:'GET',
             success(res) {
@@ -110,15 +124,12 @@ Page({
         })
     },
 
-    onGotUserInfo(e) {
-    },
-
     onPullDownRefresh:function()
     {
         console.log('loadData');
         wx.showNavigationBarLoading() //在标题栏中显示加载
     
-        this.loadData();
+        this.onLoad();
         wx.hideNavigationBarLoading();
         wx.stopPullDownRefresh();
       //模拟加载

@@ -12,6 +12,10 @@ Page({
     },
     loadData(id){
         var _this = this;
+        console.log(getApp().globalData.nowCommunity);
+        this.setData({
+            communityName: getApp().globalData.nowCommunity.community_name
+        })
         getInfoDataByID({
             id: id,
             url: 'getAdByID',

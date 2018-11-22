@@ -6,8 +6,9 @@
         </view>
         <view class="weui-cell__bd">
             <view class="item-header__title">{{headerInfo.title}}</view>
-            <view class="item-header__description">{{headerInfo.sub_title}}</view>
+            <view class="item-header__description">{{headerInfo.sub_title}}</view>            
         </view>
+        <navigator url="/pages/detail/feedback" class="feedback-btn" wx:if="{{!isShowList}}">反馈问题</navigator>
     </view>
 
     <view class="list-body"> 

@@ -1,0 +1,16 @@
+
+
+.input-text {
+    font-size: 30rpx;
+    height: 350rpx;
+    padding: 30rpx 20rpx;
+    width: 710rpx;
+    border-top: 3px solid #f0eff4;
+    border-bottom: 1px solid #f0eff4;
+    margin-bottom: 50rpx;
+}
+.weui-btn {
+    border-radius: 23px;
+    font-size: 35rpx;
+    width: 70%;
+  }

@@ -95,3 +95,8 @@
     align-items: center;
     text-align: center;
 }
+
+.feedback-btn {
+    font-size: 25rpx;
+    color: #8C9AB5;
+}

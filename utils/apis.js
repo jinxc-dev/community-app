@@ -31,17 +31,32 @@ export function getSellers(options) {
 
 export function getInfoDataByID(options) {
     let {success} = options;
+    var community_id = getApp().globalData.user_comm_id;
     fetch({
         url: options.url,
-        data:{id: options.id},
+        data:{
+            id: options.id,
+            commid: community_id
+        },
+        success
+    })
+}
+
+export function getCommunityList(options) {
+    let {success} = options;
+    fetch({
+        url: 'getCommunities',
+        data: {},
+        method:'GET',
         success
     })
 }
 
 export function getInfoDataList(options) {
     let {success} = options;
+    var community_id = getApp().globalData.user_comm_id;
     fetch({
-        url:options.url,
+        url:options.url + "/" + community_id,
         data:{},
         method:'GET',
         success
@@ -49,11 +64,15 @@ export function getInfoDataList(options) {
 }
 
 export function setInfoData(options) {
-    let {success} = options;
+    let {success, fail, complete} = options;
+    var community_id = getApp().globalData.user_comm_id;
     fetch({
         url:options.url,
-        data:options.data,
-        success
+        data:Object.assign(options.data, {commid: community_id}),
+        success,
+        fail,
+        complete
+
     })
 }
 

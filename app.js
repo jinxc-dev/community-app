@@ -1,5 +1,6 @@
 //app.js
 import {getCurrentAddress, coordFormat} from './utils/util'
+import {getCommunityList} from './utils/apis'
 import {gcj02tobd09} from './utils/coordtransform'
 import distance from './utils/distance'
 import {
@@ -8,6 +9,8 @@ import {
 App({
     onLaunch: function () {
         var _this = this;
+        
+        //. get community list
         wx.getSetting({
             success: res => {
                 if (res.authSetting['scope.userInfo']) {
@@ -19,8 +22,12 @@ App({
                 }
             }
         });
+        getCommunityList({
+            success(res) {
+                _this.globalData.communityList = res;
+            }
+        })
 
-        
         wx.getLocation({
             type: 'gcj02', //Return can be used as the latitude and longitude of wx.openLocation
             success: function(res) {
@@ -64,32 +71,33 @@ App({
         }
         this.globalData.loginInfo = loginInfo
     },
+
     getLoginUserInfo(openid, wxInfo) {
         var _this = this;
+        var tmp_commid = this.globalData.communityList[0].comm_id;
         getUserInfo({
             data: {
                 openid: openid,
                 avatarUrl: wxInfo.avatarUrl,
-                nickName: wxInfo.nickName
+                nickName: wxInfo.nickName,
+                community_id: tmp_commid
             },
             success(res) {
                 var data = {};
                 if (res.data == undefined) {
-                    console.log('xxxx');
                     data.opend_id = openid;
                     data.wechat_alias = wxInfo.nickName;
                     data.image = wxInfo.avatarUrl;
-                    data.community_id = 1;
+                    data.comm_id = tmp_commid;
                 } else {
                     data = res.data;
                 }
+                _this.globalData.user_comm_id = data.comm_id;
                 _this.globalData.userInfo = data;
             }
         })
     },
 
-
-    //删
     setCurrentAddress(address){
         if(address.addr_id){
             address.title=`${address.addr} ${address.detail}`
@@ -106,40 +114,14 @@ App({
         this.globalData.currentAddress=address
         return address
     },
-
-    // findNearbyUserAddr(cb, radius = 100) {
-    //     radius /= 100
-    //     wx.getLocation({
-    //         type: 'gcj02',
-    //         success: function (res) {
-    //             var [lng1, lat1] = gcj02tobd09(res.longitude, res.latitude)
-    //             getUserAddrs({
-    //                 success(addressList) {
-    //                     for (let i = 0, len = addressList.length; i < len; i++) {
-    //                         var address = addressList[i]
-    //                         var {
-    //                             longitude: lng2,
-    //                             latitude: lat2
-    //                         } = address
-    //                         if (distance(lat1, lng1, lat2, lng2) <= radius) {
-    //                             return cb(address)
-    //                         }
-    //                     }
-    //                     return cb()
-    //                 }
-    //             })
-    //         },
-    //         fail(res) {
-    //             console.log(res.errMsg)
-    //             alert('获取用户地址失败')
-    //         }
-    //     })
-    // },
     
     globalData: {
         userInfo: null,
         currentAddress: null,
         uploadPath: "https://community.bootmatestem.cn/upload/",
-        location: {}
+        location: {},
+        communityList: null,
+        user_comm_id: 0,
+        nowCommunity: null
     }
 })

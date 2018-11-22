@@ -22,9 +22,9 @@
                 <view class="weui-label">小区/社区</view>
             </view>
             <view class="weui-cell__bd">
-                <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" name="community_id">
-                    <view class="picker">
-                        {{array[index]}}
+                <picker value="{{index}}" range="{{communityList}}" range-key="community_name" bindchange="onChanageCommunity">
+                    <view class="picker">                    
+                        {{communityList[index].community_name}}
                     </view>
                 </picker>
             </view>
