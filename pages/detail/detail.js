@@ -132,7 +132,7 @@ Page({
                         success(res1){
                             item.distance = (res1.result.elements[0].distance / 1000).toFixed(1);
                             w_result.push(item);
-                            if (i > items.length - 1) {
+                            if (i >= items.length - 1) {
                                 _this.sortDistance(w_result);
                             }
                             
@@ -140,7 +140,7 @@ Page({
                         fail(res) {
                             item.distance = null;
                             w_result.push(item);
-                            if (i > items.length - 1) {
+                            if (i >= items.length - 1) {
                                 _this.sortDistance(w_result);
                             }
                         }
@@ -150,7 +150,9 @@ Page({
                 fail(res) {
                     item.distance = null;
                     w_result.push(item);
-                    if (i > items.length - 1) {
+                    
+
+                    if (i >= items.length - 1) {
                         _this.sortDistance(w_result);
                     }
                 }
@@ -167,6 +169,8 @@ Page({
             }
             return b.distance - a.distance;
         });
+        
+        console.log(this.data.itemList);
         this.setData({
             itemList: this.data.itemsList
         })

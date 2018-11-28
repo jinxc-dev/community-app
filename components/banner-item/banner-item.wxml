@@ -1,6 +1,6 @@
 
 <view class="banner-container">
-    <image src="{{uploadPath + info.banner_image}}" class="banner-image" />
+    <image src="{{uploadPath + info.banner_image}}" class="banner-image" mode="aspectFill"/>
     <view class="banner-context">
         <view class="description">{{info.tag_line}}</view>
         <view class="date">{{info.posted_on}}</view>

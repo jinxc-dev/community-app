@@ -1,30 +1,36 @@
 //app.js
 import {getCurrentAddress, coordFormat} from './utils/util'
-import {getCommunityList} from './utils/apis'
+import {getCommunityList, getInfoDataByID} from './utils/apis'
 import {gcj02tobd09} from './utils/coordtransform'
 import distance from './utils/distance'
 import {
-    userLogin, getUserInfo
+    userLogin, insertUserInfo
 } from './utils/apis'
 App({
     onLaunch: function () {
         var _this = this;
         
         //. get community list
-        wx.getSetting({
-            success: res => {
-                if (res.authSetting['scope.userInfo']) {
-                    _this.getUserInfo();
-                } else {
-                    wx.reLaunch({
-                        url: '../login/login'
-                    })
-                }
-            }
-        });
+        
         getCommunityList({
             success(res) {
                 _this.globalData.communityList = res;
+                console.log('communityList');
+                console.log(res);
+                wx.getSetting({
+                    success: res => {
+                        if (res.authSetting['scope.userInfo']) {
+                            _this.getUserInfo();
+                            // wx.reLaunch({
+                            //     url: '../index/index'
+                            // })
+                        } else {
+                            wx.reLaunch({
+                                url: "../login/login"
+                            })
+                        }
+                    }
+                });
             }
         })
 
@@ -53,15 +59,29 @@ App({
         var that = this;
         var openid = wx.getStorageSync('openid');
         console.log(wxInfo);
+        console.log('xxxxx');
         if (openid == "" || openid == null) {
             userLogin({
                 success(res) {
                     that.setLoginInfo(res);
-                    that.getLoginUserInfo(res.openid, wxInfo);
+                    that.insertUser(res.openid, wxInfo);
                 }
             })
         } else {
-            that.getLoginUserInfo(openid, wxInfo);
+            getInfoDataByID({
+                id: openid,
+                url: 'checkUser',
+                success(res) {
+                    if (res.data != null) {
+                        that.setGlobalUserInfo(res.data);
+                    } else {
+                        wx.removeStorageSync('openid');
+                        wx.reLaunch({
+                            url: '../login/login'
+                        })
+                    }
+                }
+            })
         }
     },
     setLoginInfo(loginInfo) {
@@ -72,10 +92,12 @@ App({
         this.globalData.loginInfo = loginInfo
     },
 
-    getLoginUserInfo(openid, wxInfo) {
+    insertUser(openid, wxInfo) {
         var _this = this;
-        var tmp_commid = this.globalData.communityList[0].comm_id;
-        getUserInfo({
+        var tmp_commid = this.globalData.communityList[0].community_id;
+        console.log(this.globalData.communityList[0]);
+        console.log(tmp_commid);
+        insertUserInfo({
             data: {
                 openid: openid,
                 avatarUrl: wxInfo.avatarUrl,
@@ -84,18 +106,18 @@ App({
             },
             success(res) {
                 var data = {};
-                if (res.data == undefined) {
-                    data.opend_id = openid;
-                    data.wechat_alias = wxInfo.nickName;
-                    data.image = wxInfo.avatarUrl;
-                    data.comm_id = tmp_commid;
-                } else {
-                    data = res.data;
-                }
-                _this.globalData.user_comm_id = data.comm_id;
-                _this.globalData.userInfo = data;
+                data.opend_id = openid;
+                data.wechat_alias = wxInfo.nickName;
+                data.image = wxInfo.avatarUrl;
+                data.comm_id = tmp_commid;
+                _this.setGlobalUserInfo(data);
             }
         })
+    },
+
+    setGlobalUserInfo(userInfo) {
+        this.globalData.user_comm_id = userInfo.comm_id;
+        this.globalData.userInfo = userInfo;
     },
 
     setCurrentAddress(address){

@@ -63,6 +63,7 @@ export function getInfoDataList(options) {
     })
 }
 
+
 export function setInfoData(options) {
     let {success, fail, complete} = options;
     var community_id = getApp().globalData.user_comm_id;
@@ -76,10 +77,10 @@ export function setInfoData(options) {
     })
 }
 
-export function getUserInfo(options) {
+export function insertUserInfo(options) {
     let {success} = options;
     fetch({
-        url: "getUserInfo",
+        url: "insertUserInfo",
         data: options.data,
         success
     })

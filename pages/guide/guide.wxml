@@ -11,7 +11,10 @@
                 <view class="tags">DIKUO</view>
             </view>
             <view class="info">
-                点击复制微信号 <text class="item">{{ownerInfo.community_owner_wechatid}}</text>, 联系我。关于皇庭世纪小区的一切，我都懂! 
+                点击复制微信号 <text class="item">{{ownerInfo.community_owner_wechatid}}</text>, 联系我。关于{{communityName}}小区的一切，我都懂! 
+
+
+                
             </view>
             
         </view>

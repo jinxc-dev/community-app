@@ -9,7 +9,7 @@
             <swiper indicator-dots="true" autoplay="true" interval="5000" duration="500" style="height:300rpx" >
                 <navigator url="/pages/index/banner/banner?id={{item.banner_ads_id}}" wx:for="{{banner}}" wx:key="{{item.index}}">
                     <swiper-item>
-                        <image src="{{uploadHost + item.banner_image}}" class="slide-image"/>
+                        <image src="{{uploadHost + item.banner_image}}" class="slide-image" />
                     </swiper-item>
 
                 </navigator>

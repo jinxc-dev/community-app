@@ -7,7 +7,8 @@ Page({
         menuData:[], 
         menuInfo: [],
         uploadPath: app.globalData.uploadPath,
-        ownerInfo:{}
+        ownerInfo:{},
+        communityName: ''
     },
     onReady: function () {
 
@@ -15,6 +16,11 @@ Page({
 
     onLoad: function () {
         console.log(this.data.uploadPath);
+        this.data.communityName = app.globalData.nowCommunity['community_name'];
+        console.log(this.data.communityName);
+        this.setData({
+            communityName: this.data.communityName
+        })
         this.loadData();
         
     },

@@ -18,8 +18,11 @@
                     <view> {{item.menu_item_name}}</view>
                     <view class="tags" wx:if="{{idx==0}}">离你最近</view>
                 </view>
-                <view class="address">
+                <view class="address" wx:if="{{item.distance!=null}}">
                     {{item.address}} ({{item.distance}}km)
+                </view>            
+                <view class="address" wx:else>
+                    {{item.address}}
                 </view>            
             </view>
         </view>

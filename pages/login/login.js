@@ -7,7 +7,8 @@ Page({
     onLoad: function () {
         wx.getSetting({
             success: res => {
-                if (res.authSetting['scope.userInfo']) {
+                // if (res.authSetting['scope.userInfo'] && !wx.getStorageSync('openid')) {
+                if (res.authSetting['scope.userInfo'] && wx.getStorageSync('openid')) {
                     wx.reLaunch({
                         url: '../index/index'
                     })
