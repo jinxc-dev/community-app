@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "小区指南",
-  "navigationBarTextStyle": "light",
+  "navigationBarTextStyle": "white",
   "navigationBarBackgroundColor": "#da3925",
   "backgroundColor": "#da3925",
   "enablePullDownRefresh": true
